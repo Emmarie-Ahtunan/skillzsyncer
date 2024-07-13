@@ -16,7 +16,6 @@ app.use(cors());
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true
 });
 const connection = mongoose.connection;
@@ -25,11 +24,11 @@ connection.once('open', () => {
 });
 
 // Routes
-const messagesRouter = require('./routes/messages');
-const authRouter = require('./routes/auth');
+// const messagesRouter = require('./routes/messages');
+// const authRouter = require('./routes/auth');
 
-app.use('/api/messages', messagesRouter);
-app.use('/api/auth', authRouter);
+// app.use('/api/messages', messagesRouter);
+// app.use('/api/auth', authRouter);
 
 // Start server
 const port = process.env.PORT || 5000;
