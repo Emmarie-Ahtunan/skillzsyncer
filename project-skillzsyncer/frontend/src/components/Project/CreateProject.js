@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProject = () => {
     const [formData, setFormData] = useState({ title: '', description: '', skills: '' });
     const { user } = useContext(AuthContext);
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
