@@ -1,13 +1,13 @@
 // src/components/Auth/Login.js
 import React, { useState, useContext } from 'react';
 import api from '../../api';
-import { AuthContext } from '../../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const { login } = useContext(AuthContext);
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
