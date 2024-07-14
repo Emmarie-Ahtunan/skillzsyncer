@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", email: "", fullname: "", password: "" });
   const { login } = useContext(AuthContext);
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     // console.log(e.target.name, e.target.value);
@@ -18,11 +18,14 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(formData);
       const res = await api.post("/signup", formData);
       login(res.data.token);
-      history.push("/");
+      navigate("/");
     } catch (err) {
       console.error(err);
+      // Display error message to the user
+      // Example: setErrorMessage("An error occurred. Please try again.");
     }
   };
 
@@ -52,11 +55,11 @@ const Signup = () => {
                     htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Your email
+                    Email
                   </label>
                   <input
                     type="email"
-                    name="username"
+                    name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
@@ -64,6 +67,43 @@ const Signup = () => {
                     onChange={handleChange}
                   />
                 </div>
+
+                <div>
+                  <label
+                    htmlFor="username"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Username
+                  </label>
+                  <input
+                    type="username"
+                    name="username"
+                    id="username"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="janedoedev"
+                    required=""
+                    onChange={handleChange} 
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="fullname"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="fullname"
+                    id="fullname"
+                    placeholder="John Doe"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required=""
+                    onChange={handleChange}
+                  />
+                </div>
+
                 <div>
                   <label
                     htmlFor="password"
@@ -81,22 +121,9 @@ const Signup = () => {
                     onChange={handleChange}
                   />
                 </div>
-                <div>
-                  <label
-                    htmlFor="confirm-password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Confirm password
-                  </label>
-                  <input
-                    type="confirm-password"
-                    name="confirm-password"
-                    id="confirm-password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required=""
-                  />
-                </div>
+
+                
+
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
                     <input

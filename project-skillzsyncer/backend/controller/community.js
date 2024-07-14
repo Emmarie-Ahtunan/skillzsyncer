@@ -19,7 +19,7 @@ exports.createCommunity = async (req, res) => {
             name,
             description,
             admin: admin._id,
-            skill
+            skill 
         });
 
         // Update admin profile to include the new community
