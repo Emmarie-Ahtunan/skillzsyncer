@@ -25,6 +25,8 @@ exports.createProfile = async (req, res) => {
 exports.getProfile = async (req, res) => {
     const { userId } = req.params;
 
+    console.log(userId);
+
     try {
         const profile = await Profile.findOne({ userId });
         if (!profile) {
@@ -41,12 +43,15 @@ exports.updateProfile = async (req, res) => {
     const { userId } = req.params;
     const { skills, bio, contact, communities, profileImage, projects } = req.body;
 
+    console.log(`updating profile for userId: ${userId}`);
+
     try {
         const updatedProfile = await Profile.findOneAndUpdate(
             { userId },
             { skills, bio, contact, communities, profileImage, projects },
             { new: true }
         );
+        
         res.status(200).json(updatedProfile);
     } catch (error) {
         res.status(500).json({ error: error.message });
