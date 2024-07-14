@@ -21,6 +21,21 @@ exports.createProfile = async (req, res) => {
     }
 };
 
+// Controller to fetch a profile
+exports.getProfile = async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const profile = await Profile.findOne({ userId });
+        if (!profile) {
+            return res.status(404).json({ error: 'Profile not found' });
+        }
+        res.status(200).json(profile);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 // Controller to update profile information
 exports.updateProfile = async (req, res) => {
     const { userId } = req.params;

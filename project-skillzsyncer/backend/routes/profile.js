@@ -5,6 +5,10 @@ const communityController = require('../controller/community');
 const multer = require('multer');
 const upload = multer({ dest: '../assets/uploads' }); // Configure as per your needs
 
+
+// GET request to fetch the profiles
+router.get('/:userId', profileController.getProfile);
+
 // POST request to upload profile image
 router.post('/upload-image/:userId', upload.single('profileImage'), async (req, res) => {
     const { userId } = req.params;

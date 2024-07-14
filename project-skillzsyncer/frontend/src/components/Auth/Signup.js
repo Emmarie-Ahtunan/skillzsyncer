@@ -1,5 +1,5 @@
 // src/components/Auth/Signup.js
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import api from "../../api";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({ username: "", email: "", fullname: "", password: "" });
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
+
   const handleChange = (e) => {
-    // console.log(e.target.name, e.target.value);
+    // console.log(user);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
