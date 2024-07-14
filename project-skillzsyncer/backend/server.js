@@ -6,6 +6,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
+const communityRoutes = require('./routes/community');
 const profileRoutes = require('./routes/profile'); // Import profile routes
 const { AuthenticationCookie } = require('./middleware/auth.js');
 
@@ -36,6 +37,7 @@ app.get('/profile', AuthenticationCookie('token'), (req, res) => {
     const user = req.user;
     res.json({ user });
 });
+app.use('/community', communityRoutes); // Use community routes
 
 // Start server
 const port = process.env.PORT || 5000;
