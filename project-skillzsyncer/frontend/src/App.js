@@ -5,7 +5,8 @@ import { AuthProvider } from './components/context/AuthContext';
 // import PrivateRoute from './utils/PrivateRoute';
 
 // Navbar File doesnt exist yet
-// import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
+import Home from './components/Landing/Home';
 import Signup from './components/Auth/Signup';
 import Login from './components/Auth/Login';
 import Profile from './components/Profile/Profile';
@@ -17,18 +18,18 @@ const App = () => {
     return (
         <AuthProvider>
             <Router>
-                {/* <Navbar /> */}
-                {/* <h1>Hello, World!</h1> */}
-                    <Routes>
-                        <Route path="/signup" element={<Signup/>} />
-                        <Route path="/login" element={<Login/>} />
-                        <Route path="/profile" element={<Profile/>} />
-                        <Route path="/create-project" element={<CreateProject/>} />
-                        <Route path="/project-list" element={<ProjectList/>} />
-                        <Route path="/messages" element={<Messages/>} />
-                    </Routes>
-                </Router>
-                </AuthProvider>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/create-project" element={<CreateProject />} />
+                    <Route path="/project-list" element={<ProjectList />} />
+                    <Route path="/messages" element={<Messages />} />
+                </Routes>
+            </Router>
+        </AuthProvider>
     );
 }
 export default App;
