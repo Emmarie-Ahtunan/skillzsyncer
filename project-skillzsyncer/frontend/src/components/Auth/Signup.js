@@ -1,13 +1,13 @@
 // src/components/Auth/Signup.js
 import React, { useState, useContext } from 'react';
 import api from '../../api';
-import { AuthContext } from '../../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const { login } = useContext(AuthContext);
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,11 +25,14 @@ const Signup = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="username" onChange={handleChange} placeholder="Username" />
-            <input type="password" name="password" onChange={handleChange} placeholder="Password" />
-            <button type="submit">Sign Up</button>
-        </form>
+        <>
+            <h1>Hello from the Signup page!</h1>
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="username" onChange={handleChange} placeholder="Username" />
+                <input type="password" name="password" onChange={handleChange} placeholder="Password" />
+                <button type="submit">Sign Up</button>
+            </form>
+        </>
     );
 };
 
